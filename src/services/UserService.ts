@@ -5,7 +5,6 @@ export const createUser = async (email: string, password: string) => {
     const hasUser = await User.findOne({where: { email }});
     if(!hasUser) {
         const hash = await bcrypt.hash(password, 10);
-        
         const newUser = await User.create({
             email,
             password: hash
